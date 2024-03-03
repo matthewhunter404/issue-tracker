@@ -1,2 +1,15 @@
 <h1>{{ issue.issue_text }}</h1>
 <p>{{ issue.issue_text }}</p>
+
+
+{% if issue.comment_set.all %}
+    <ul>
+        {% for comment in issue.comment_set.all %}
+            <li>{{ comment.comment_text }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No comments yet.</p>
+{% endif %}
+
+<button>Add a comment</button>

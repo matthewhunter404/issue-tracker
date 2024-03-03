@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
-from .models import Issue
+from .models import Issue,Comment
 def index(request):
     issue_list = Issue.objects.order_by("-creation_date")
     context = {"issue_list": issue_list}
