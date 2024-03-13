@@ -1,15 +1,18 @@
-<h1>{{ issue.issue_text }}</h1>
-<p>{{ issue.issue_text }}</p>
-
-
-{% if issue.comment_set.all %}
+<fieldset>
+    <legend><h1>{{ issue.issue_text }}</h1></legend>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    {% if issue.comment_set.all %}
     <ul>
         {% for comment in issue.comment_set.all %}
-            <li>{{ comment.comment_text }}</li>
+        <li>{{ comment.comment_text }}</li>
         {% endfor %}
     </ul>
-{% else %}
+    {% else %}
     <p>No comments yet.</p>
-{% endif %}
-
-<button>Add a comment</button>
+    {% endif %}
+    <form action="{% url 'issues:comment' issue.id %}" method="post">
+        {% csrf_token %}
+        <input type="text" id="fname" name="fname">
+<!--        value="Add a comment">-->
+    </form>
+</fieldset>
