@@ -1,6 +1,7 @@
 from django.db import models
 
 class Issue(models.Model):
+    project = models.ForeignKey("projects.Project", on_delete=models.CASCADE, blank=True, null=True)
     issue_text = models.CharField(max_length=200)
     completion_state = models.BooleanField(default=False)
     creation_date = models.DateTimeField("date created")
