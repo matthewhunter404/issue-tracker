@@ -4,8 +4,8 @@ from .models import Project
 def index(request):
     project_list = Project.objects.order_by("-creation_date")
     context = {"project_list": project_list}
-    return render(request, "project/index.html", context)
+    return render(request, "projects/index.html", context)
 
 def detail(request, project_id):
-    issue = get_object_or_404(Project, pk=project_id)
-    return render(request, "project/detail.html", {"issue": issue})
+    project = get_object_or_404(Project, pk=project_id)
+    return render(request, "projects/detail.html", {"project": project})
